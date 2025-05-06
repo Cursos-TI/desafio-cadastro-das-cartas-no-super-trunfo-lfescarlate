@@ -45,7 +45,7 @@ int main()
     printf("Código da carta: %s", codigoCarta2);
     scanf(" %s", codigoCarta2); 
 
-    printf("Nome da cidade: %s", nomeCidade2);        
+    printf("Nome da cidade: ");                      // Não utilizar o indicador %s, estava causando lixo na memória, retornando valores esquisitos
     getchar();                                        
     fgets(nomeCidade2, sizeof(nomeCidade2), stdin);   
 
