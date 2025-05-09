@@ -42,7 +42,7 @@ int main()
 
     densidadePop1 = populacao1 / area1;
     printf("Densidade Populacional (hab/km²): %.2f\n", densidadePop1);
-    scanf("%.2f", &densidadePop1);
+    
 
     pibPer1 = pib1 * 1000000000 / populacao1;
     printf("PIB per Capita(R$): %.2f", pibPer1);
@@ -78,7 +78,6 @@ int main()
 
     densidadePop2 = populacao2 / area2;
     printf("Densidade Populacional (hab/km²): %.2f\n", densidadePop2);
-    scanf("%.2f", &densidadePop2);
 
     pibPer2 = pib2 * 1000000000 / populacao2;
     printf("PIB per Capita(R$): %.2f", pibPer2);
