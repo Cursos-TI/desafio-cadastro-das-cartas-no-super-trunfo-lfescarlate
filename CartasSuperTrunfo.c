@@ -4,7 +4,7 @@
 int main()
 {
     // Definir as variáveis
-    char estado1 , estado2;
+    char estado1 = '\0', estado2 = '\0';
     char codigoCarta1[50] = {'\0'};                    // {'\0'} serve para inicializar a string com um valor nulo (Quando estiver retornando 0 no valor)
     char codigoCarta2[50] = {'\0'};                    // {'\0'} serve para inicializar a string com um valor nulo (Quando estiver retornando 0 no valor)
     char nomeCidade1[50], nomeCidade2[50];
@@ -12,7 +12,10 @@ int main()
     float area1, area2;
     float pib1, pib2;
     int numPontosTuristicos1, numPontosTuristicos2;
+    float densidadePop1, densidadePop2;
+    float pibPer1, pibPer2;
 
+    // Solicitar a entrada de dados da Carta 1
     printf("Carta 1\n");
     printf("Estado: %c", estado1);
     scanf(" %c", &estado1);                           // O espaço antes do %c é para ignorar o caractere de nova linha que pode ter sido deixado no buffer de entrada
@@ -30,14 +33,26 @@ int main()
     printf("Área (em km²): ");                         // Sem usar a variavel area(1,2), pois retornava um valor inicial "0"
     scanf("%f", &area1);
 
+    
     printf("PIB (em bilhões de R$): ");                // Sem usar a variavel pib(1,2), pois retornava um valor inicial "0"
     scanf("%f", &pib1);
 
     printf("Número de pontos turísticos: ");
     scanf("%d", &numPontosTuristicos1);
 
-    printf("\n\n");                                   // Comando para pular linha com o intuito de separar as cartas
+    densidadePop1 = populacao1 / area1;
+    printf("Densidade Populacional (hab/km²): %.2f\n", densidadePop1);
+    scanf("%.2f", &densidadePop1);
 
+    pibPer1 = pib1 * 1000000000 / populacao1;
+    printf("PIB per Capita(R$): %.2f", pibPer1);
+    
+    
+
+    // Comando para pular linha com o intuito de separar as cartas
+    printf("\n\n");                                   
+
+    // Solicitar a entrada de dados da Carta 2
     printf("Carta 2\n");
     printf("Estado: %c", estado2);
     scanf(" %c", &estado2);                           
@@ -45,7 +60,7 @@ int main()
     printf("Código da carta: %s", codigoCarta2);
     scanf(" %s", codigoCarta2); 
 
-    printf("Nome da cidade: ");                      // Não utilizar o indicador %s, estava causando lixo na memória, retornando valores esquisitos
+    printf("Nome da cidade: %s", nomeCidade2);        
     getchar();                                        
     fgets(nomeCidade2, sizeof(nomeCidade2), stdin);   
 
@@ -60,6 +75,13 @@ int main()
 
     printf("Número de pontos turísticos: ");
     scanf("%d", &numPontosTuristicos2);
+
+    densidadePop2 = populacao2 / area2;
+    printf("Densidade Populacional (hab/km²): %.2f\n", densidadePop2);
+    scanf("%.2f", &densidadePop2);
+
+    pibPer2 = pib2 * 1000000000 / populacao2;
+    printf("PIB per Capita(R$): %.2f", pibPer2);
 
     return 0;
 }
