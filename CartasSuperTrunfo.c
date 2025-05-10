@@ -8,12 +8,13 @@ int main()
     char codigoCarta1[50] = {'\0'};                    // {'\0'} serve para inicializar a string com um valor nulo (Quando estiver retornando 0 no valor)
     char codigoCarta2[50] = {'\0'};                    // {'\0'} serve para inicializar a string com um valor nulo (Quando estiver retornando 0 no valor)
     char nomeCidade1[50], nomeCidade2[50];
-    int populacao1, populacao2;
+    unsigned long int populacao1, populacao2;
     float area1, area2;
     float pib1, pib2;
     int numPontosTuristicos1, numPontosTuristicos2;
     float densidadePop1, densidadePop2;
     float pibPer1, pibPer2;
+    float superPoder1, superPoder2;
 
     // Solicitar a entrada de dados da Carta 1
     printf("Carta 1\n");
@@ -28,7 +29,7 @@ int main()
     fgets(nomeCidade1, sizeof(nomeCidade1), stdin);   // Usar o fgets para conseguir ler o nome da cidade corretamente, incluindo espaços
 
     printf("População: ");                            // Sem usar a variavel populacao(1,2), pois retornava um valor inicial "0"
-    scanf("%d", &populacao1);
+    scanf("%lu", &populacao1);
 
     printf("Área (em km²): ");                         // Sem usar a variavel area(1,2), pois retornava um valor inicial "0"
     scanf("%f", &area1);
@@ -44,8 +45,11 @@ int main()
     printf("Densidade Populacional (hab/km²): %.2f\n", densidadePop1);
     
 
-    pibPer1 = pib1 * 1000000000 / populacao1;
-    printf("PIB per Capita(R$): %.2f", pibPer1);
+    pibPer1 = pib1 * 1000000000 / populacao1;   //Linha feita pra alterar o valor de entrada xxx.xx para bilhões, sendo possível dividi-lo pela população
+    printf("PIB per Capita(R$): %.2f\n", pibPer1);
+
+    superPoder1 = populacao1 + area1 + pib1 + (float)numPontosTuristicos1 + pibPer1 + (1 / densidadePop1); // (1 / densidadepop2) é uma linha para conseguir o inverso da densidade
+    printf("O Super poder de %s é de: %.2f\n", nomeCidade1, superPoder1);
     
     
 
@@ -65,7 +69,7 @@ int main()
     fgets(nomeCidade2, sizeof(nomeCidade2), stdin);   
 
     printf("População: ");                            
-    scanf("%d", &populacao2);
+    scanf("%lu", &populacao2);
 
     printf("Área (em km²): ");                         
     scanf("%f", &area2);
@@ -82,5 +86,38 @@ int main()
     pibPer2 = pib2 * 1000000000 / populacao2;
     printf("PIB per Capita(R$): %.2f", pibPer2);
 
+    superPoder2 = populacao2 + area2 + pib2 + (float)numPontosTuristicos2 + pibPer2 + (1 / densidadePop2); // (1 / densidadepop2) é uma linha para conseguir o inverso da densidade
+    printf("O Super poder de %s é de: %.2f\n", nomeCidade2, superPoder2);
+
+
+    /*Criar comparação das cartas (exceto estado, código e nome)
+
+    Utilizando operador ternário para melhorar a exibição de qual carta venceu (forma compacta de escrever um if...else)
+    
+    Sintaxe geral: 
+    condição ? valor_se_verdadeiro : valor_se_falso;
+
+    Exemplo:
+    (populacao1 > populacao2 ? 1 : 2):
+    Se a população da carta 1 for maior, retorna 1 (Carta 1 venceu).
+
+    Caso contrário, retorna 2 (Carta 2 venceu).
+    (populacao1 > populacao2):
+    Retorna 1 se verdadeiro, 0 se falso (usado para exibir o valor da comparação).
+
+    */
+    
+    printf("\n *** Comparação das cartas ***\n\n");
+    printf("População: Carta %d venceu (%d)\n", (populacao1 > populacao2 ? 1 : 2),(populacao1 > populacao2));
+    printf("Área: Carta %d venceu (%d)\n", (area1 > area2 ? 1 : 2), (area1 > area2));
+    printf("PIB: Carta %d venceu (%d)\n",(pib1 > pib2 ? 1 : 2), (pib1 > pib2));
+    printf("Pontos turísticos: Carta %d venceu (%d)\n",(numPontosTuristicos1 > numPontosTuristicos2 ? 1 : 2), (numPontosTuristicos1 > numPontosTuristicos2));
+    printf("Densidade Populacional: Carta %d venceu (%d)\n",(densidadePop1 < densidadePop2 ? 1 : 2), (densidadePop1 < densidadePop2));
+    printf("PIB per Capita: Carta %d venceu (%d)\n",(pibPer1 > pibPer2 ? 1 : 2), (pibPer1 > pibPer2));
+    printf("Super Poder: Carta %d venceu (%d)\n",(superPoder1 > superPoder2 ? 1 : 2), (superPoder1 > superPoder2));
+    
+    
+    
+
     return 0;
-}
+    }
